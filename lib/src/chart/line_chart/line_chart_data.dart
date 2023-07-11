@@ -904,21 +904,16 @@ class FlDotSquarePainter extends FlDotPainter {
   void draw(Canvas canvas, FlSpot spot, Offset offsetInCanvas) {
     if (strokeWidth != 0.0 && strokeColor.opacity != 0.0) {
       canvas.drawRect(
-        Rect.fromCircle(
-          center: offsetInCanvas,
-          radius: (size / 2) + (strokeWidth / 2),
-        ),
+        Rect.fromCenter(center: offsetInCanvas, width: strokeWidth, height: size),
         Paint()
           ..color = strokeColor
           ..strokeWidth = strokeWidth
-          ..style = PaintingStyle.stroke,
+          ..style = PaintingStyle.fill,
       );
     }
-    canvas.drawRect(
-      Rect.fromCircle(
-        center: offsetInCanvas,
-        radius: size / 2,
-      ),
+    canvas.drawCircle(
+      offsetInCanvas,
+      2,
       Paint()
         ..color = color
         ..style = PaintingStyle.fill,
